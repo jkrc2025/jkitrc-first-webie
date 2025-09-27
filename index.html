@@ -2,126 +2,87 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Happy Birthday!</title>
 <style>
   body {
-    background: #ffe6f0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    font-family: 'Comic Sans MS', sans-serif;
-    overflow: hidden;
+    background: #fff0f5;
+    text-align: center;
+    font-family: 'Calisto MT', serif;
   }
 
   h1 {
-    color: #d63384;
+    text-transform: uppercase; /* Makes the text uppercase */
     font-size: 3em;
-    margin-bottom: 20px;
-    animation: bounce 1s infinite alternate;
-  }
-
-  @keyframes bounce {
-    from { transform: translateY(0); }
-    to { transform: translateY(-15px); }
+    margin-top: 50px;
+    color: #ff1493;
   }
 
   .cake {
-    width: 200px;
-    height: 150px;
-    background: #8b4513; /* chocolate */
-    border-radius: 0 0 20px 20px;
     position: relative;
-    margin-bottom: 20px;
+    width: 200px;
+    height: 200px;
+    margin: 40px auto;
+    background: #d2691e;
+    border-radius: 0 0 20px 20px;
   }
 
   .candle {
-    width: 10px;
-    height: 40px;
-    background: yellow;
     position: absolute;
     top: -40px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 90px;
+    width: 20px;
+    height: 40px;
+    background: #ffeb3b;
     border-radius: 3px;
   }
 
   .flame {
+    position: absolute;
+    top: -20px;
+    left: 5px;
     width: 10px;
-    height: 15px;
+    height: 20px;
     background: orange;
     border-radius: 50%;
-    position: absolute;
-    top: -15px;
-    left: 0;
-    animation: flicker 0.2s infinite alternate;
+    animation: flicker 0.3s infinite alternate;
   }
 
   @keyframes flicker {
-    from { transform: scaleY(1); opacity: 1; }
-    to { transform: scaleY(1.2); opacity: 0.8; }
+    from { transform: scaleY(1); }
+    to { transform: scaleY(1.3); }
   }
 
   button {
-    margin-top: 20px;
+    margin-top: 30px;
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 1em;
     cursor: pointer;
   }
-
-  .confetti {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: #ff0;
-    animation: fall 3s linear forwards;
-  }
-
-  @keyframes fall {
-    0% { transform: translateY(0) rotate(0deg); opacity:1;}
-    100% { transform: translateY(600px) rotate(360deg); opacity:0;}
-  }
-
-  .hidden { display: none; }
 </style>
 </head>
 <body>
 
-<h1>Happy Birthday, Friend!</h1>
+<h1>Happy Birthday!</h1>
 
 <div class="cake">
-  <div class="candle" id="candle">
-    <div class="flame" id="flame"></div>
+  <div class="candle">
+    <div class="flame"></div>
   </div>
 </div>
 
-<button onclick="blowCandle()">Blow Candle!</button>
+<button onclick="blowCandle()">Blow the Candle!</button>
 
-<audio id="music" autoplay loop>
-  <source src="happy_birthday.mp3" type="audio/mp3">
-</audio>
+<audio id="music" src="happy-birthday.mp3"></audio>
 
 <script>
-  function blowCandle() {
-    const flame = document.getElementById('flame');
-    flame.classList.add('hidden');
-
-    // Create confetti
-    for(let i=0; i<50; i++){
-      const conf = document.createElement('div');
-      conf.classList.add('confetti');
-      conf.style.backgroundColor = `hsl(${Math.random()*360}, 100%, 50%)`;
-      conf.style.left = `${Math.random()*window.innerWidth}px`;
-      conf.style.animationDuration = `${2 + Math.random()*3}s`;
-      document.body.appendChild(conf);
-      setTimeout(()=> conf.remove(), 4000); // remove confetti after animation
-    }
-
-    alert("Yay! Candle blown! 🎉");
-  }
+function blowCandle() {
+  const flame = document.querySelector('.flame');
+  flame.style.display = 'none';
+  document.getElementById('music').play();
+  alert('🎉 Candle blown! Happy Birthday! 🎉');
+}
 </script>
 
 </body>
 </html>
-
